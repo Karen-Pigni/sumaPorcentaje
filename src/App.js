@@ -8,7 +8,6 @@ import Result from './components/Result';
 const App = () => {
   const [ num ,  setNum ] = useState(0);
   const [ aumento  , setAumento ] = useState(0);
-  const [ resultado ,  setResultado ] = useState(0);
 
 
 
@@ -21,8 +20,6 @@ const App = () => {
       <Result 
         num={num} 
         aumento={aumento} 
-        setResultado={setResultado}
-        resultado={resultado}
         />
     </>
   )
