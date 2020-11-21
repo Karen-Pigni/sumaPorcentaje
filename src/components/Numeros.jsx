@@ -4,13 +4,11 @@ const Numeros = ({setNum,setAumento}) => {
 
     const inputNum = (e) => {
         let num = e.target.value;
-        console.log(num)
         setNum(num)
     }
  
     const inputNum2 = (e) => {
         let num = e.target.value;
-        console.log(num)
         setAumento(num)
     }
 

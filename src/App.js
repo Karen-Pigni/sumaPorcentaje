@@ -1,26 +1,58 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { render } from 'react-dom';
 import './style.css';
-import Numeros from './components/Numeros';
-import Result from './components/Result';
 
+
+
+let reducer = (state, action) => {
+  switch(action.type){
+    case 'CIFRA':
+      return{
+        ...state,
+        num: action.num
+      }
+    case 'AUMENTO':
+      return{
+        ...state,
+        aum: action.aum
+      }
+      default: break; 
+  }
+}
 
 const App = () => {
-  const [ num ,  setNum ] = useState(0);
-  const [ aumento  , setAumento ] = useState(0);
-
-
+  const [{num,aum} , dispatch] = useReducer(reducer, {num: 0, aum: 0})
+  let numero = parseInt(num);
+  let aumento = parseInt(num*aum/100);
+  
+  const handleNum = (e) => {
+    dispatch({
+      type: 'CIFRA',
+      num: e.target.value
+    })
+  }
+ 
+  const handleAum = (e) => {
+    dispatch({
+      type: 'AUMENTO',
+      aum: e.target.value
+    })
+  }
 
   return(
     <>
-      <Numeros 
-        setNum={setNum} 
-        setAumento={setAumento}
-      />
-      <Result 
-        num={num} 
-        aumento={aumento} 
-        />
+      <div>
+        <input type="number" onChange={ handleNum } placeholder="numero"/>
+      </div>
+      <div>
+        <input type="number" onChange={ handleAum } placeholder="% de aumento"/>
+      </div>
+      <h1>=</h1>
+      <h1>
+        { isNaN && ( numero + aumento ) ?
+          ( numero + aumento ) : 0 
+        }
+      </h1>
     </>
   )
 }
